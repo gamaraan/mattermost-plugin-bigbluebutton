@@ -18,10 +18,11 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"errors"
+	"fmt"
 	"net/url"
 	"strings"
+
 	bbbAPI "github.com/blindsidenetworks/mattermost-plugin-bigbluebutton/server/bigbluebuttonapiwrapper/api"
 	"github.com/blindsidenetworks/mattermost-plugin-bigbluebutton/server/bigbluebuttonapiwrapper/dataStructs"
 	"github.com/mattermost/mattermost-server/model"
@@ -36,7 +37,6 @@ func (p *Plugin) PopulateMeeting(m *dataStructs.MeetingRoom, details []string, d
 		m.Name_ = "Big Blue Button Meeting"
 	}
 
-
 	siteconfig := p.API.GetConfig()
 
 	var callbackURL string
@@ -45,7 +45,7 @@ func (p *Plugin) PopulateMeeting(m *dataStructs.MeetingRoom, details []string, d
 	} else {
 		return errors.New("SiteURL not set")
 	}
-	if !strings.HasPrefix(callbackURL, "http"){
+	if !strings.HasPrefix(callbackURL, "http") {
 		callbackURL = "http://" + callbackURL
 	}
 
@@ -114,7 +114,6 @@ func (p *Plugin) FindMeetingfromInternal(meeting_id string) *dataStructs.Meeting
 	return nil
 }
 
-
 func (p *Plugin) createStartMeetingPost(user_id string, channel_id string, m *dataStructs.MeetingRoom) {
 
 	config := p.config()
@@ -124,12 +123,12 @@ func (p *Plugin) createStartMeetingPost(user_id string, channel_id string, m *da
 	}
 
 	textPost := &model.Post{UserId: user_id, ChannelId: channel_id,
-		Message: "#BigBlueButton #" + m.Name_ + " #ID" + m.MeetingID_, Type: "custom_bbb"}
+		Message: "#ConferenceBot #" + m.Name_ + " #ID" + m.MeetingID_, Type: "custom_bbb"}
 
 	textPost.Props = model.StringInterface{
 		"from_webhook":      "true",
-		"override_username": "BigBlueButton",
-		"override_icon_url": "https://pbs.twimg.com/profile_images/467451035837923328/JxPpOTL6_400x400.jpeg",
+		"override_username": "ConferenceBot",
+		"override_icon_url": "https://bbb.isoftbet.com/isb.jpg",
 		"meeting_id":        m.MeetingID_,
 		"meeting_status":    "STARTED",
 		"meeting_personal":  false,

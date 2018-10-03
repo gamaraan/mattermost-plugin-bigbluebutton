@@ -28,7 +28,7 @@ class PluginClass {
     window.store = store;
     registry.registerPostTypeComponent('custom_bbb', PostTypebbb);
     registry.registerChannelHeaderButtonAction(
-      <ChannelHeaderButton/>,() => store.dispatch(channelHeaderButtonAction()), 'BigBlueButton');
+      <ChannelHeaderButton/>,() => store.dispatch(channelHeaderButtonAction()), 'Conference');
     registry.registerPopoverUserActionsComponent(ProfilePopover);
     registry.registerRootComponent(Root);
 

@@ -79,7 +79,7 @@ export default class ChannelHeaderButton extends React.PureComponent {
     return (<div>
       <div >
         <OverlayTrigger trigger={['hover']} delayShow={400} ref = "overlay" placement='bottom' overlay={(<Tooltip id='bbbChannelHeaderTooltip'>
-            {'BigBlueButton'}
+            {'Conference'}
           </Tooltip>)}>
           <div id='bbbChannelHeaderButton' onClick={(e) => {
               this.refs.overlay.hide();
